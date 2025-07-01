@@ -2,9 +2,9 @@
 
 namespace App\Filament\Admin\Resources;
 
-use App\Filament\Admin\Resources\HeroSectionsResource\Pages;
-use App\Filament\Admin\Resources\HeroSectionsResource\RelationManagers;
-use App\Models\HeroSections;
+use App\Filament\Admin\Resources\AboutResource\Pages;
+use App\Filament\Admin\Resources\AboutResource\RelationManagers;
+use App\Models\About;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,9 +13,9 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class HeroSectionsResource extends Resource
+class AboutResource extends Resource
 {
-    protected static ?string $model = HeroSections::class;
+    protected static ?string $model = About::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -56,9 +56,9 @@ class HeroSectionsResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListHeroSections::route('/'),
-            'create' => Pages\CreateHeroSections::route('/create'),
-            'edit' => Pages\EditHeroSections::route('/{record}/edit'),
+            'index' => Pages\ListAbouts::route('/'),
+            'create' => Pages\CreateAbout::route('/create'),
+            'edit' => Pages\EditAbout::route('/{record}/edit'),
         ];
     }
 }

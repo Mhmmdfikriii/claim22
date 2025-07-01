@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Filament\Admin\Resources\HeroSectionsResource\Pages;
+namespace App\Filament\Admin\Resources\HeroSectionResource\Pages;
 
-use App\Filament\Admin\Resources\HeroSectionsResource;
+use App\Filament\Admin\Resources\HeroSectionResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
 class ListHeroSections extends ListRecords
 {
-    protected static string $resource = HeroSectionsResource::class;
+    protected static string $resource = HeroSectionResource::class;
 
     protected function getHeaderActions(): array
     {

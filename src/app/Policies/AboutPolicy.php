@@ -3,10 +3,10 @@
 namespace App\Policies;
 
 use App\Models\User;
-use App\Models\HeroSections;
+use App\Models\About;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class HeroSectionsPolicy
+class AboutPolicy
 {
     use HandlesAuthorization;
 
@@ -15,15 +15,15 @@ class HeroSectionsPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_hero::sections');
+        return $user->can('view_any_about');
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, HeroSections $heroSections): bool
+    public function view(User $user, About $about): bool
     {
-        return $user->can('view_hero::sections');
+        return $user->can('view_about');
     }
 
     /**
@@ -31,23 +31,23 @@ class HeroSectionsPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_hero::sections');
+        return $user->can('create_about');
     }
 
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, HeroSections $heroSections): bool
+    public function update(User $user, About $about): bool
     {
-        return $user->can('update_hero::sections');
+        return $user->can('update_about');
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, HeroSections $heroSections): bool
+    public function delete(User $user, About $about): bool
     {
-        return $user->can('delete_hero::sections');
+        return $user->can('delete_about');
     }
 
     /**
@@ -55,13 +55,13 @@ class HeroSectionsPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_hero::sections');
+        return $user->can('delete_any_about');
     }
 
     /**
      * Determine whether the user can permanently delete.
      */
-    public function forceDelete(User $user, HeroSections $heroSections): bool
+    public function forceDelete(User $user, About $about): bool
     {
         return $user->can('{{ ForceDelete }}');
     }
@@ -77,7 +77,7 @@ class HeroSectionsPolicy
     /**
      * Determine whether the user can restore.
      */
-    public function restore(User $user, HeroSections $heroSections): bool
+    public function restore(User $user, About $about): bool
     {
         return $user->can('{{ Restore }}');
     }
@@ -93,7 +93,7 @@ class HeroSectionsPolicy
     /**
      * Determine whether the user can replicate.
      */
-    public function replicate(User $user, HeroSections $heroSections): bool
+    public function replicate(User $user, About $about): bool
     {
         return $user->can('{{ Replicate }}');
     }

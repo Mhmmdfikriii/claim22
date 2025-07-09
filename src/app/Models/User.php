@@ -9,6 +9,7 @@ use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements FilamentUser, HasAvatar
@@ -51,16 +52,31 @@ class User extends Authenticatable implements FilamentUser, HasAvatar
         ];
     }
 
-    public function getFilamentAvatarUrl(): ?string
-    {
-        if ($this->avatar_url) {
-            return asset('storage/' . $this->avatar_url);
-        } else {
-            $hash = md5(strtolower(trim($this->email)));
+    // public function getFilamentAvatarUrl(): ?string
+    // {
+    //     if ($this->avatar_url) {
+    //         return asset('storage/' . $this->avatar_url);
+    //     } else {
+    //         $hash = md5(strtolower(trim($this->email)));
 
-            return 'https://www.gravatar.com/avatar/' . $hash . '?d=mp&r=g&s=250';
-        }
+    //         return 'https://www.gravatar.com/avatar/' . $hash . '?d=mp&r=g&s=250';
+    //     }
+    // }
+    public function getFilamentAvatarUrl(): ?string
+{
+    $avatarColumn = config('filament-edit-profile.avatar_column', 'avatar_url');
+
+    if (!empty($this->$avatarColumn)) {
+        return Storage::url($this->$avatarColumn);
     }
+
+    // Jika avatar kosong, generate gravatar
+    $email = strtolower(trim($this->email));
+    $hash = md5($email);
+
+    return 'https://www.gravatar.com/avatar/' . $hash . '?d=mp&r=g&s=250';
+}
+
 
     public function canAccessPanel(Panel $panel): bool
     {

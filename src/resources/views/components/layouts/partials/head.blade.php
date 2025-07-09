@@ -13,6 +13,7 @@
     $footerImageUrl = (filled($footerImagePath) && Storage::disk('public')->exists($footerImagePath))
         ? Storage::url($footerImagePath)
         : asset('images/hero1.png');
+    
 @endphp
 
 <head>
